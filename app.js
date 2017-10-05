@@ -49,16 +49,42 @@ Customer.imgPaths = ( function() {
   return paths;
 })();
 
+Customer.handleAddItem = function( event ) { //handler for first page
+  event.preventDefault();
+  var formEl = document.getElementsByTagName( 'form' );
+  console.log( formEl );
+};
 
-( function() {
-  var selectEl = document.getElementsByTagName('select')[ 0 ];
-  Customer.productNames.forEach( function( productName ) {
-    var optionEl = document.createElement( 'option' );
-    optionEl.value = productName;
-    optionEl.textContent = productName;
-    selectEl.appendChild( optionEl );
-  } );
+Customer.handleCheckout = function( event ) { //handler for second page
+  event.preventDefault();
+  console.log( 'hey' );
+};
+
+( function() { //Creates the drop down list for page one
+  if ( document.getElementsByTagName('select')[ 0 ] ) {
+    var selectEl = document.getElementsByTagName('select')[ 0 ];
+    Customer.productNames.forEach( function( productName ) {
+      var optionEl = document.createElement( 'option' );
+      optionEl.value = productName;
+      optionEl.textContent = productName;
+      selectEl.appendChild( optionEl );
+    } );
+  }
 })();
+
+( function() { //Add event listeners to buttons
+  var formEl = document.getElementsByTagName( 'form' )[ 0 ];
+  if ( formEl ) {
+    var handler = Customer.handleAddItem;
+  } else { //event listener for page 2
+    handler = Customer.handleCheckout;
+  }
+  // buttonEl.addEventListener( 'click', handler );
+})();
+
+
+
+
 
 
 
