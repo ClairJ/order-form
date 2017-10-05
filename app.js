@@ -49,6 +49,7 @@ Customer.imgPaths = ( function() {
   return paths;
 })();
 
+
 ( function() {
   var selectEl = document.getElementsByTagName('select')[ 0 ];
   Customer.productNames.forEach( function( productName ) {
@@ -58,3 +59,13 @@ Customer.imgPaths = ( function() {
     selectEl.appendChild( optionEl );
   } );
 })();
+
+
+
+
+
+
+
+
+// ===============================================================
+// var liEL = getElementsByName('name')
