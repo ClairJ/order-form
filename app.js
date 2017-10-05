@@ -49,14 +49,15 @@ Customer.imgPaths = ( function() {
   return paths;
 })();
 
-Customer.handleAddItem = function( event ) {
-  console.log( 'hi' );
+Customer.handleAddItem = function( event ) { //handler for first page
   event.preventDefault();
+  var formEl = document.getElementsByTagName( 'form' );
+  console.log( formEl );
 };
 
-Customer.handleCheckout = function( event ) {
-  console.log( 'hey' );
+Customer.handleCheckout = function( event ) { //handler for second page
   event.preventDefault();
+  console.log( 'hey' );
 };
 
 ( function() { //Creates the drop down list for page one
@@ -72,14 +73,15 @@ Customer.handleCheckout = function( event ) {
 })();
 
 ( function() { //Add event listeners to buttons
-  var buttonEl = document.getElementsByTagName( 'button' )[ 0 ];
-  if ( buttonEl.name === 'submitcart' ) {
+  var formEl = document.getElementsByTagName( 'form' )[ 0 ];
+  if ( formEl ) {
     var handler = Customer.handleAddItem;
   } else { //event listener for page 2
     handler = Customer.handleCheckout;
   }
-  buttonEl.addEventListener( 'click', handler );
+  // buttonEl.addEventListener( 'click', handler );
 })();
+
 
 
 
