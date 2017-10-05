@@ -48,5 +48,24 @@ Customer.imgPaths = ( function() {
   });
   return paths;
 })();
+
+
+( function() {
+  var selectEl = document.getElementsByTagName('select')[ 0 ];
+  Customer.productNames.forEach( function( productName ) {
+    var optionEl = document.createElement( 'option' );
+    optionEl.value = productName;
+    optionEl.textContent = productName;
+    selectEl.appendChild( optionEl );
+  } );
+})();
+
+
+
+
+
+
+
+
 // ===============================================================
 // var liEL = getElementsByName('name')
