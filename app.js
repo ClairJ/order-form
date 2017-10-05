@@ -54,6 +54,11 @@ Customer.handleAddItem = function( event ) {
   event.preventDefault();
 };
 
+Customer.handleCheckout = function( event ) {
+  console.log( 'hey' );
+  event.preventDefault();
+};
+
 ( function() { //Creates the drop down list for page one
   if ( document.getElementsByTagName('select')[ 0 ] ) {
     var selectEl = document.getElementsByTagName('select')[ 0 ];
@@ -67,12 +72,13 @@ Customer.handleAddItem = function( event ) {
 })();
 
 ( function() { //Add event listeners to buttons
-  if ( document.getElementsByTagName( 'button' )[ 0 ].name === 'submitcart' ) {
-    var submitCartEl = document.getElementsByTagName( 'button' )[ 0 ];
-    submitCartEl.addEventListener( 'click', Customer.handleAddItem );
+  var buttonEl = document.getElementsByTagName( 'button' )[ 0 ];
+  if ( buttonEl.name === 'submitcart' ) {
+    var handler = Customer.handleAddItem;
   } else { //event listener for page 2
-    console.log('heyo');
+    handler = Customer.handleCheckout;
   }
+  buttonEl.addEventListener( 'click', handler );
 })();
 
 
