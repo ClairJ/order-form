@@ -48,3 +48,5 @@ Customer.imgPaths = ( function() {
   });
   return paths;
 })();
+// ===============================================================
+// var liEL = getElementsByName('name')
