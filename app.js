@@ -94,4 +94,23 @@ Customer.handleCheckout = function( event ) { //handler for second page
 
 
 // ===============================================================
-// var liEL = getElementsByName('name')
+
+function cartTotal() {
+  var ulEl = getElementsByName('cartSelection');
+  for (var i = 0; i < Customer.orders.length; i++) {
+    Customer.orders[i];
+    if (Customer.orders[i] > 0) {
+      var liEl = document.createElement('li');
+      var imgEl = document.createElement('img');
+      var h2El = document.createElement('h2');
+      var h2El2 = document.createElement('h2');
+      imgEl.src = Customer.imgPaths[i];
+      h2El.textContent = Customer.name[i];
+      h2El2.textContent = 'QTY ' + Customer.orders[i];
+      liEl.appendChild(imgEl);
+      liEl.appendChild(h2El);
+      liEl.appendChild(h2El2);
+      ulEl.appendChild(liEl);
+    }
+  }
+}
