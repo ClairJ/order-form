@@ -162,13 +162,11 @@ function cartTotal(customer) {
       liEl.appendChild(h2El2);
       liEl.appendChild(buttEl);
       ulEl.appendChild(liEl);
+      buttEl.addEventListener('click', function(){
+        ulEl.removeChild(liEl);
+      });
     }
   }
-
-  buttEl.addEventListener('click', function(){
-    ulEl.removeChild(liEl);
-  });
-
 }
 //Remove a quantity from cart
 // var ul = document.getElementsByTagName('ul');
