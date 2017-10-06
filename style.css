@@ -74,16 +74,18 @@ main ul li {
 }
 main ul li img{
 display: block;
-margin-left: 30px;
+margin-left: 150px;
 }
 main ul li h2{
 float: right;
 display: block;
 margin-left: 40px;
+margin-right: 180px;
+}
+main ul li button {
+margin-left: 175px;
 }
 .footer2 {
   margin: auto;
 width: 50%;
-
-
 }
