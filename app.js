@@ -51,12 +51,18 @@ Customer.imgPaths = ( function() {
 
 Customer.handleAddItem = function( event ) { //handler for first page
   event.preventDefault();
-  var formEl = document.getElementsByTagName( 'form' );
-  console.log( formEl );
+  // var itemIndex = Customer.productNames.indexOf( event.target.select.value );
+  // var quantity = event.target.input.value;
+  var arry = ['select', 'qty', 'name', 'street', 'city', 'state', 'phonenumber', 'creditcard'];
+  arry = arry.map( function( element ) {
+    return event.target[ element ].value;
+  } );
+
+  console.log( arry );
+
 };
 
 Customer.handleCheckout = function( event ) { //handler for second page
-  event.preventDefault();
   console.log( 'hey' );
 };
 
@@ -75,11 +81,10 @@ Customer.handleCheckout = function( event ) { //handler for second page
 ( function() { //Add event listeners to buttons
   var formEl = document.getElementsByTagName( 'form' )[ 0 ];
   if ( formEl ) {
-    var handler = Customer.handleAddItem;
+    formEl.addEventListener( 'submit', Customer.handleAddItem );
   } else { //event listener for page 2
-    handler = Customer.handleCheckout;
+    document.getElementsByTagName( 'button' )[ 0 ].addEventListener( 'click', Customer.handleCheckout );
   }
-  // buttonEl.addEventListener( 'click', handler );
 })();
 
 
