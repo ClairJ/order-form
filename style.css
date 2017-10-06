@@ -89,3 +89,52 @@ margin-left: 175px;
   margin: auto;
 width: 50%;
 }
+
+
+/*Friday*/
+h1 {
+  padding-top: 30px;
+}
+
+h2 {
+  margin-bottom: 0px;
+}
+
+main div {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+p {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+footer {
+  text-align: center;
+}
+footer p {
+  margin: 30px auto;
+  padding-bottom: 30px;
+  font-size: 20px;
+}
+
+form {
+  height: auto;
+  padding: 0 30px;
+}
+
+form input {
+  height: 20px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+}
+
+form div {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+button {
+  cursor: pointer;
+}
