@@ -94,19 +94,19 @@ Customer.handleCheckout = function( event ) { //handler for second page
 
 
 // ===============================================================
-
-function cartTotal() {
-  var ulEl = getElementsByName('cartSelection');
-  for (var i = 0; i < Customer.orders.length; i++) {
-    Customer.orders[i];
-    if (Customer.orders[i] > 0) {
+//displays chosen image on cart page
+function cartTotal(customer) {
+  var ulEl = document.getElementsByTagName('ul')[0];
+  for (var i = 0; i < customer.orders.length; i++) {
+    if (customer.orders[i] > 0) {
       var liEl = document.createElement('li');
       var imgEl = document.createElement('img');
       var h2El = document.createElement('h2');
       var h2El2 = document.createElement('h2');
       imgEl.src = Customer.imgPaths[i];
-      h2El.textContent = Customer.name[i];
-      h2El2.textContent = 'QTY ' + Customer.orders[i];
+      imgEl.alt = 'product ' + i;
+      h2El.textContent = customer.name;
+      h2El2.textContent = 'QTY ' + customer.orders[i];
       liEl.appendChild(imgEl);
       liEl.appendChild(h2El);
       liEl.appendChild(h2El2);
@@ -114,3 +114,16 @@ function cartTotal() {
     }
   }
 }
+//Remove a quantity from cart
+var ul = document.getElementsByTagName('ul');
+function handleCartRemove(name, e) {
+  
+  if (e.target.alt === 'ul') {
+    return alert('click image to remove from cart!');
+  }
+  for (var i = 0; i < customer.orders.length; i++) {
+    if(e.target.alt === )
+  }
+}
+
+ul.addEventListener('click', handleCartRemove);
