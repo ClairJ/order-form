@@ -153,6 +153,7 @@ if( localStorage.customerData ) { //get data if it exists
   }
 })();
 
+
 if( document.getElementsByTagName('form')[0] ) { //listener for 'proceed' button on first page
   document.getElementsByTagName( 'button' )[ 1 ].addEventListener( 'click', function() {
     if( localStorage.customerData ) {
