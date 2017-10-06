@@ -85,8 +85,6 @@ Customer.handleAddItem = function( event ) { //handler for first page
 
 Customer.handleCheckout = function( event ) { //handler for second page
   console.log( 'hey' );
-
-
 };
 
 ( function() { //Creates the drop down list for page one
