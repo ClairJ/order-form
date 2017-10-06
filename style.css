@@ -11,14 +11,47 @@ html {
   background-repeat-x: no-repeat;
   background-size: 100%;
 }
+form {
+  height: 300px;
+}
+button {
+  font-family: westy;
+  font-size: 10px;
+  background: #f51823;
+  background-image: -webkit-linear-gradient(top, #f51823, #ebb3be);
+  background-image: -moz-linear-gradient(top, #f51823, #ebb3be);
+  background-image: -ms-linear-gradient(top, #f51823, #ebb3be);
+  background-image: -o-linear-gradient(top, #f51823, #ebb3be);
+  background-image: linear-gradient(to bottom, #f51823, #ebb3be);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: westy;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+button:hover {
+  background: #f20303;
+  background-image: -webkit-linear-gradient(top, #f20303, #000000);
+  background-image: -moz-linear-gradient(top, #f20303, #000000);
+  background-image: -ms-linear-gradient(top, #f20303, #000000);
+  background-image: -o-linear-gradient(top, #f20303, #000000);
+  background-image: linear-gradient(to bottom, #f20303, #000000);
+  text-decoration: none;
+}
 body header h1 {
   text-align: center;
 }
 img {
   border: solid black;
+  border-radius: 10%;
   margin-top: 30px;
   margin-left: 30px;
   margin-bottom: 30px;
+  margin-right: 0px;
   width: 200px;
   height: 200px;
 }
@@ -36,6 +69,21 @@ body {
   margin-left: 200px;
   margin-right: 200px;
 }
+main ul li {
+  list-style: none;
+}
+main ul li img{
+display: block;
+margin-left: 30px;
+}
 main ul li h2{
-float: left;
+float: right;
+display: block;
+margin-left: 40px;
+}
+.footer2 {
+  margin: auto;
+width: 50%;
+
+
 }
