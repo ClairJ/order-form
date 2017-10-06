@@ -129,27 +129,36 @@ function cartTotal(customer) {
       var imgEl = document.createElement('img');
       var h2El = document.createElement('h2');
       var h2El2 = document.createElement('h2');
+      var buttEl = document.createElement('button');
       imgEl.src = Customer.imgPaths[i];
       imgEl.alt = 'product ' + i;
       h2El.textContent = customer.name;
       h2El2.textContent = 'QTY ' + customer.orders[i];
+      buttEl.textContent = 'kill me!';
       liEl.appendChild(imgEl);
       liEl.appendChild(h2El);
       liEl.appendChild(h2El2);
+      liEl.appendChild(buttEl);
       ulEl.appendChild(liEl);
+      buttEl.addEventListener('click', function(){
+        liEl.removeChild(imgEl);
+        liEl.removeChild(h2El);
+        liEl.removeChild(h2El2);
+        liEl.removeChild(buttEl);
+      });
     }
   }
 }
 //Remove a quantity from cart
-var ul = document.getElementsByTagName('ul');
-function handleCartRemove(name, e) {
-  
-  if (e.target.alt === 'ul') {
-    return alert('click image to remove from cart!');
-  }
-  for (var i = 0; i < customer.orders.length; i++) {
-    if(e.target.alt === )
-  }
-}
-
-ul.addEventListener('click', handleCartRemove);
+// var ul = document.getElementsByTagName('ul');
+// function handleCartRemove(name, e) {
+//
+//   if (e.target.alt === 'ul') {
+//     return alert('click image to remove from cart!');
+//   }
+//   for (var i = 0; i < customer.orders.length; i++) {
+//     if(e.target.alt === )
+//   }
+// }
+//
+// ul.addEventListener('click', handleCartRemove);
