@@ -2,33 +2,66 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="style.css">
+    <title>Busmall Order Form</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header></header>
+    <header>
+      <h1>Busmall Order Form</h1>
+    </header>
     <main>
+      <div>
+        <h2>First Item</h2>
+        <p>To add your first item:</p>
+        <ol>
+          <li>Select an item from the drop-down list.</li>
+          <li>Enter an item quantity.</li>
+          <li>Enter your contact information.</li>
+          <li>Enter your credit card number.</li>
+          <li>Click 'ADD TO ORDER' to add item(s) to your cart.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>Additional Items</h2>
+        <p>You can continue to add items to your cart until you checkout. There's no need to type in your customer information a second time. Simply add more items as follows:</p>
+        <ol>
+          <li>Select an item from the list.</li>
+          <li>Choose the quantity.</li>
+          <li>Click 'ADD TO ORDER' again to add the new items to your cart.</li>
+          <li>When you are finished adding items, click 'PROCEED TO CHECKOUT'.</li>
+        </ol>
+      </div>
       <form>
         <fieldset>
+          <label for="select">Product:</label>
           <select name="select"></select>
-            QTY: <input type="number" name="qty">
-            <div class="address">
-              Full Name: <input type="text" name="name">
-              Street: <input type="text" name="street">
-              City: <input type="text" name="city">
-              State: <input type="text" name="state">
-              zip: <input type="text" name="zip">
-              Phone Number: <input type="text" name="phonenumber">
-            </div>
-              credit card: <input type="number" name="creditcard">
-              <button type="submit" name="submitcart">ADD TO CART</button>
-            </fieldset>
+          <label for="qty">Qty:</label>
+          <input type="number" name="qty" />
+          <div class="address">
+            <label for="name">Full Name:</label>
+            <input type="text" name="name" />
+            <label for="street">Street:</label>
+            <input type="text" name="street" />
+            <label for="city">City:</label>
+            <input type="text" name="city" />
+            <label for="state">State:</label>
+            <input type="text" name="state" />
+            <label for="zip">Zip:</label>
+            <input type="text" name="zip" />
+            <label for="phonenumber">Phone Number:</label>
+            <input type="text" name="phonenumber" />
+          </div>
+          <label for="creditcard">Credit Card:</label>
+          <input type="number" name="creditcard">
+          <button type="submit" name="submitcart">ADD TO CART</button>
+          <button type="button" name="checkout">PROCEED TO CHECKOUT</button>
+
+        </fieldset>
       </form>
     </main>
     <footer>
+      <p>&copy; 2017 Busmall</p>
     </footer>
-    <script type="text/javascript" src="app.js">
-
-    </script>
+    <script type="text/javascript" src="app.js"></script>
   </body>
 </html>
