@@ -54,17 +54,24 @@ Customer.imgPaths = ( function() {
 
 Customer.handleAddItem = function( event ) { //handler for first page
   event.preventDefault();
-  var customerInputData = ['select', 'qty', 'name', 'street', 'city', 'state', 'phonenumber', 'creditcard'];
-  customerInputData = customerInputData.map( function( element ) {
-    return event.target[ element ].value;
+  var customerInputData = ['select', 'qty', 'name', 'street', 'city', 'state', 'zip', 'phonenumber', 'creditcard'];
+  customerInputData = customerInputData.map( function( element, index ) {
+    var value = event.target[ element ].value;
+    if( index > 0 ) {
+      event.target[ element ].value = null;
+    } else {
+      event.target[ element ].value = 'bag';
+    }
+    return value;
   } );
   customerInputData[ 0 ] = Customer.productNames.indexOf( customerInputData[ 0 ] );
   var address = {
     street: customerInputData[ 3 ],
     city: customerInputData[ 4 ],
     state: customerInputData[ 5 ],
-    phoneNumber: customerInputData[ 6 ],
-    creditCard: customerInputData[ 7 ]
+    zipCode: customerInputData[ 6 ],
+    phoneNumber: customerInputData[ 7 ],
+    creditCard: customerInputData[ 8 ]
   };
 
   if( Customer.customers.length === 0 ) { //if a customer hasn't been created yet, create it
@@ -73,13 +80,13 @@ Customer.handleAddItem = function( event ) { //handler for first page
 
   //update customer order data
   Customer.customers[ 0 ].orders[ customerInputData[ 0 ] ] += Number( customerInputData[ 1 ] );
-
-  console.log( customerInputData );
-
+  localStorage.customerData = JSON.stringify( Customer.customers[ 0 ] );
 };
 
 Customer.handleCheckout = function( event ) { //handler for second page
   console.log( 'hey' );
+
+
 };
 
 ( function() { //Creates the drop down list for page one
