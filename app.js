@@ -99,6 +99,35 @@ Customer.handleCheckout = function() { //handler for second page
   window.location.href = 'index.html';
 };
 
+function cartTotal(customer) {
+  var h1El = document.createElement('h1');
+  h1El.textContent = customer.name + '\'s Cart';
+  document.getElementsByTagName('header')[0].appendChild(h1El);
+
+  var ulEl = document.getElementsByTagName('ul')[0];
+  for (var i = 0; i < customer.orders.length; i++) {
+    if (customer.orders[i] > 0) {
+      var liEl = document.createElement('li');
+      liEl.id = 'product ' + i;
+      var imgEl = document.createElement('img');
+      var h2El = document.createElement('h2');
+      var h2El2 = document.createElement('h2');
+      var buttEl = document.createElement('button');
+      imgEl.src = Customer.imgPaths[i];
+      imgEl.alt = 'product ' + i;
+      h2El.textContent = Customer.productNames[ i ];
+      h2El2.textContent = 'QTY ' + customer.orders[i];
+      buttEl.textContent = 'Delete this item';
+      buttEl.name = 'product ' + i;
+      liEl.appendChild(imgEl);
+      liEl.appendChild(h2El);
+      liEl.appendChild(h2El2);
+      liEl.appendChild(buttEl);
+      ulEl.appendChild(liEl);
+    }
+  }
+}
+
 if( localStorage.customerData ) { //get data if it exists
   Customer.customers[ 0 ] = JSON.parse( localStorage.customerData );
 }
@@ -146,47 +175,6 @@ if ( !document.getElementsByTagName( 'form' )[ 0 ] ) {
   }
 }
 
-
-
-
-
-
-
-
-
-
-// ===============================================================
-//displays chosen image on cart page
-function cartTotal(customer) {
-  var h1El = document.createElement('h1');
-  h1El.textContent = customer.name + '\'s Cart';
-  document.getElementsByTagName('header')[0].appendChild(h1El);
-
-  var ulEl = document.getElementsByTagName('ul')[0];
-  for (var i = 0; i < customer.orders.length; i++) {
-    if (customer.orders[i] > 0) {
-      var liEl = document.createElement('li');
-      liEl.id = 'product ' + i;
-      var imgEl = document.createElement('img');
-      var h2El = document.createElement('h2');
-      var h2El2 = document.createElement('h2');
-      var buttEl = document.createElement('button');
-      imgEl.src = Customer.imgPaths[i];
-      imgEl.alt = 'product ' + i;
-      h2El.textContent = Customer.productNames[ i ];
-      h2El2.textContent = 'QTY ' + customer.orders[i];
-      buttEl.textContent = 'Delete this item';
-      buttEl.name = 'product ' + i;
-      liEl.appendChild(imgEl);
-      liEl.appendChild(h2El);
-      liEl.appendChild(h2El2);
-      liEl.appendChild(buttEl);
-      ulEl.appendChild(liEl);
-    }
-  }
-}
-
-
 if( document.getElementsByName( 'cartSelection' )[0] ) {
   document.getElementsByName( 'cartSelection' )[0].addEventListener( 'click', function(e) {
     if( e.target.name ) {
@@ -205,19 +193,3 @@ if( document.getElementsByName( 'cartSelection' )[0] ) {
     }
   });
 }
-
-
-
-// Remove a quantity from cart
-// var ul = document.getElementsByTagName('ul');
-// function handleCartRemove(name, e) {
-//
-//   if (e.target.alt === 'ul') {
-//     return alert('click image to remove from cart!');
-//   }
-//   for (var i = 0; i < customer.orders.length; i++) {
-//     if(e.target.alt === )
-//   }
-// }
-//
-// ul.addEventListener('click', handleCartRemove);
