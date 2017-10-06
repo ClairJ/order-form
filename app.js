@@ -119,9 +119,9 @@ function cartTotal(customer) {
       h2El2.textContent = 'QTY ' + customer.orders[i];
       buttEl.textContent = 'Delete this item';
       buttEl.name = 'product ' + i;
-      liEl.appendChild(imgEl);
-      liEl.appendChild(h2El);
       liEl.appendChild(h2El2);
+      liEl.appendChild(h2El);
+      liEl.appendChild(imgEl);
       liEl.appendChild(buttEl);
       ulEl.appendChild(liEl);
     }
