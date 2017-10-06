@@ -1,7 +1,41 @@
+@font-face {
+  font-family: westy;
+  src: url('fontsstorage/WEST____.TTF');
+}
+html {
+  background-image: url('css img/hWCGHK.jpg');
+  background-size: auto;
+  background-origin: padding-box;
+  background-position-x: 50%;
+  background-position-y:0%;
+  background-repeat-x: no-repeat;
+  background-size: 100%;
+}
+body header h1 {
+  text-align: center;
+}
 img {
+  border: solid black;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-bottom: 30px;
   width: 200px;
   height: 200px;
 }
-form {
-
+body {
+  font-family: westy;
+  font-size: 30px;
+  background-image: url('css img/vintage-western-wallpaper.jpg');
+  background-size: auto;
+  background-origin: padding-box;
+  background-position-x: 50%;
+  background-position-y:0%;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  background-size: 100% 100%;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+main ul li img {
+  float: left;
 }
