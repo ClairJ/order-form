@@ -65,7 +65,7 @@ Customer.handleAddItem = function( event ) { //handler for first page
       return alert('Please fill in all fields to continue.');
     }
   }
-
+  alert('Items successfully added to cart!');
   ['select', 'qty', 'name', 'street', 'city', 'state', 'zip', 'phonenumber', 'creditcard'].forEach( function( element, index ) {
     if( index > 0 ) {
       event.target[ element ].value = null;
@@ -93,8 +93,10 @@ Customer.handleAddItem = function( event ) { //handler for first page
   localStorage.customerData = JSON.stringify( Customer.customers[ 0 ] );
 };
 
-Customer.handleCheckout = function( event ) { //handler for second page
-  console.log( 'hey' );
+Customer.handleCheckout = function() { //handler for second page
+  delete localStorage.customerData;
+  alert('Thank you! Your order has been processed.');
+  window.location.href = 'index.html';
 };
 
 if( localStorage.customerData ) { //get data if it exists
@@ -125,7 +127,7 @@ if( localStorage.customerData ) { //get data if it exists
 if( document.getElementsByTagName('form')[0] ) { //listener for 'proceed' button on first page
   document.getElementsByTagName( 'button' )[ 1 ].addEventListener( 'click', function() {
     if( localStorage.customerData ) {
-      if( confirm('Are you sure you want to continue? Did you add your last item to the cart?') ) {
+      if( confirm('You should only proceed if you added your last item to the cart.\n\nAre you sure you want to continue?') ) {
         window.location.href = 'cart.html';
       }
     } else {
@@ -135,7 +137,13 @@ if( document.getElementsByTagName('form')[0] ) { //listener for 'proceed' button
 }
 
 if ( !document.getElementsByTagName( 'form' )[ 0 ] ) {
-  cartTotal( Customer.customers[ 0 ] );
+  try {
+    cartTotal( Customer.customers[ 0 ] );
+  }
+  catch(e) {
+    alert('Errrr...You shouldn\'t be here.\n\nYour cart is empty.\n\nRedirecting...');
+    window.location.href = 'index.html';
+  }
 }
 
 
@@ -160,14 +168,17 @@ function cartTotal(customer) {
       var liEl = document.createElement('li');
       liEl.id = 'product ' + i;
       var imgEl = document.createElement('img');
+      var h2El = document.createElement('h2');
       var h2El2 = document.createElement('h2');
       var buttEl = document.createElement('button');
       imgEl.src = Customer.imgPaths[i];
       imgEl.alt = 'product ' + i;
+      h2El.textContent = Customer.productNames[ i ];
       h2El2.textContent = 'QTY ' + customer.orders[i];
       buttEl.textContent = 'Delete this item';
       buttEl.name = 'product ' + i;
       liEl.appendChild(imgEl);
+      liEl.appendChild(h2El);
       liEl.appendChild(h2El2);
       liEl.appendChild(buttEl);
       ulEl.appendChild(liEl);
@@ -185,6 +196,11 @@ if( document.getElementsByName( 'cartSelection' )[0] ) {
         ulEl.removeChild( liEl );
         Customer.customers[ 0 ].orders[ Number(e.target.name.split( ' ' )[ 1 ]) ] = 0;
         localStorage.customerData = JSON.stringify( Customer.customers[ 0 ] );
+        if( !ulEl.hasChildNodes() ) {
+          alert('Your cart is empty, returning you to the store.');
+          delete localStorage.customerData;
+          window.location.href = 'index.html';
+        }
       }
     }
   });
