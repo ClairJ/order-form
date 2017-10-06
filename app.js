@@ -10,7 +10,10 @@ function Customer( name, address ) {
     } );
     return cart;
   })();
+  Customer.customers.push( this );
 }
+
+Customer.customers = [];
 
 Customer.productNames = [
   'bag',
@@ -51,12 +54,36 @@ Customer.imgPaths = ( function() {
 
 Customer.handleAddItem = function( event ) { //handler for first page
   event.preventDefault();
-  var formEl = document.getElementsByTagName( 'form' );
-  console.log( formEl );
+  var customerInputData = ['select', 'qty', 'name', 'street', 'city', 'state', 'zip', 'phonenumber', 'creditcard'];
+  customerInputData = customerInputData.map( function( element, index ) {
+    var value = event.target[ element ].value;
+    if( index > 0 ) {
+      event.target[ element ].value = null;
+    } else {
+      event.target[ element ].value = 'bag';
+    }
+    return value;
+  } );
+  customerInputData[ 0 ] = Customer.productNames.indexOf( customerInputData[ 0 ] );
+  var address = {
+    street: customerInputData[ 3 ],
+    city: customerInputData[ 4 ],
+    state: customerInputData[ 5 ],
+    zipCode: customerInputData[ 6 ],
+    phoneNumber: customerInputData[ 7 ],
+    creditCard: customerInputData[ 8 ]
+  };
+
+  if( Customer.customers.length === 0 ) { //if a customer hasn't been created yet, create it
+    new Customer( customerInputData[ 2 ], address );
+  }
+
+  //update customer order data
+  Customer.customers[ 0 ].orders[ customerInputData[ 0 ] ] += Number( customerInputData[ 1 ] );
+  localStorage.customerData = JSON.stringify( Customer.customers[ 0 ] );
 };
 
 Customer.handleCheckout = function( event ) { //handler for second page
-  event.preventDefault();
   console.log( 'hey' );
 };
 
@@ -75,11 +102,10 @@ Customer.handleCheckout = function( event ) { //handler for second page
 ( function() { //Add event listeners to buttons
   var formEl = document.getElementsByTagName( 'form' )[ 0 ];
   if ( formEl ) {
-    var handler = Customer.handleAddItem;
+    formEl.addEventListener( 'submit', Customer.handleAddItem );
   } else { //event listener for page 2
-    handler = Customer.handleCheckout;
+    document.getElementsByTagName( 'button' )[ 0 ].addEventListener( 'click', Customer.handleCheckout );
   }
-  // buttonEl.addEventListener( 'click', handler );
 })();
 
 
