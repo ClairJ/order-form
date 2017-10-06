@@ -10,7 +10,10 @@ function Customer( name, address ) {
     } );
     return cart;
   })();
+  Customer.customers.push( this );
 }
+
+Customer.customers = [];
 
 Customer.productNames = [
   'bag',
@@ -51,14 +54,27 @@ Customer.imgPaths = ( function() {
 
 Customer.handleAddItem = function( event ) { //handler for first page
   event.preventDefault();
-  // var itemIndex = Customer.productNames.indexOf( event.target.select.value );
-  // var quantity = event.target.input.value;
-  var arry = ['select', 'qty', 'name', 'street', 'city', 'state', 'phonenumber', 'creditcard'];
-  arry = arry.map( function( element ) {
+  var customerInputData = ['select', 'qty', 'name', 'street', 'city', 'state', 'phonenumber', 'creditcard'];
+  customerInputData = customerInputData.map( function( element ) {
     return event.target[ element ].value;
   } );
+  customerInputData[ 0 ] = Customer.productNames.indexOf( customerInputData[ 0 ] );
+  var address = {
+    street: customerInputData[ 3 ],
+    city: customerInputData[ 4 ],
+    state: customerInputData[ 5 ],
+    phoneNumber: customerInputData[ 6 ],
+    creditCard: customerInputData[ 7 ]
+  };
 
-  console.log( arry );
+  if( Customer.customers.length === 0 ) { //if a customer hasn't been created yet, create it
+    new Customer( customerInputData[ 2 ], address );
+  }
+
+  //update customer order data
+  Customer.customers[ 0 ].orders[ customerInputData[ 0 ] ] += Number( customerInputData[ 1 ] );
+
+  console.log( customerInputData );
 
 };
 
