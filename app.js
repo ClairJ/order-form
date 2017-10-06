@@ -13,6 +13,18 @@ function Customer( name, address ) {
   Customer.customers.push( this );
 }
 
+if( document.getElementsByTagName('form')[0] ) {
+  document.getElementsByTagName( 'button' )[ 1 ].addEventListener( 'click', function() {
+    if( localStorage.customerData ) {
+      if( confirm('Are you sure you want to continue? Did you add your last item to the cart?') ) {
+        window.location.href = 'cart.html';
+      }
+    } else {
+      alert('You must add at least 1 item to the cart before proceeding.');
+    }
+  });
+}
+
 Customer.customers = [];
 
 Customer.productNames = [
@@ -55,15 +67,25 @@ Customer.imgPaths = ( function() {
 Customer.handleAddItem = function( event ) { //handler for first page
   event.preventDefault();
   var customerInputData = ['select', 'qty', 'name', 'street', 'city', 'state', 'zip', 'phonenumber', 'creditcard'];
-  customerInputData = customerInputData.map( function( element, index ) {
+  customerInputData = customerInputData.map( function( element ) {
     var value = event.target[ element ].value;
+    return value;
+  } );
+
+  if( Customer.customers.length === 0 ) { //if a customer hasn't been created yet, check inputs
+    if( !customerInputData[ 0 ] || !customerInputData[ 1 ] || !customerInputData[ 2 ] || !customerInputData[ 3 ] || !customerInputData[ 4 ] || !customerInputData[ 5 ] || !customerInputData[ 6 ] || !customerInputData[ 7 ] || !customerInputData[ 8 ] ) {
+      return alert('Please fill in all fields to continue.');
+    }
+  }
+
+  ['select', 'qty', 'name', 'street', 'city', 'state', 'zip', 'phonenumber', 'creditcard'].forEach( function( element, index ) {
     if( index > 0 ) {
       event.target[ element ].value = null;
     } else {
       event.target[ element ].value = 'bag';
     }
-    return value;
   } );
+
   customerInputData[ 0 ] = Customer.productNames.indexOf( customerInputData[ 0 ] );
   var address = {
     street: customerInputData[ 3 ],
@@ -74,7 +96,7 @@ Customer.handleAddItem = function( event ) { //handler for first page
     creditCard: customerInputData[ 8 ]
   };
 
-  if( Customer.customers.length === 0 ) { //if a customer hasn't been created yet, create it
+  if( Customer.customers.length === 0 ) {
     new Customer( customerInputData[ 2 ], address );
   }
 
